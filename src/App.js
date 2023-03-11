@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 
-const influencerList = [
+const userList = [
   {
     id: 1,
     name: 'Rachel Sensenig',
@@ -21,20 +20,28 @@ const influencerList = [
 function App() {
   return (
     <div className="App">
-      <h1>List of Influencers:</h1>
-      <InfluencerInfoItem />
+      <h1>Enter a New User:</h1>
+      <label htmlFor="user-name">New User:</label>
+      <input 
+        id="user-name"
+        name="user-name"
+        type="text" 
+      />
+      <br />
+      <h1>List of Users:</h1>
+      <UserItem />
     </div>
   );
 }
 
-function InfluencerInfoItem() {
+function UserItem() {
   return (
-    influencerList.map(influencer => (
-      <ul key= {influencer.id}>
-        <li>Name: {influencer.name}</li>
-        <li>Location: {influencer.location}</li>
-        <li>Followers: {influencer.followers}</li>
-        <li>Following: {influencer.following}</li>
+    userList.map(user => (
+      <ul key= {user.id}>
+        <li>Name: {user.name}</li>
+        <li>Location: {user.location}</li>
+        <li>Followers: {user.followers}</li>
+        <li>Following: {user.following}</li>
       </ul>
     ))
   )
