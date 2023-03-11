@@ -21,10 +21,10 @@ function App() {
   return (
     <div className="App">
       <h1>Enter a New User:</h1>
-      <label htmlFor="user-name">New User:</label>
+      <label htmlFor="username">New User:</label>
       <input 
-        id="user-name"
-        name="user-name"
+        id="username"
+        name="username"
         type="text" 
       />
       <br />
