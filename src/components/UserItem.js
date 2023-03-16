@@ -1,6 +1,6 @@
-export const UserItem = (props) => {
+export const UserItem = ({userList}) => {
     return (
-        props.userList.map(user => (
+        userList.map(user => (
             <ul key= {user.id}>
                 <li>Name: {user.name}</li>
                 <li>Location: {user.location}</li>
