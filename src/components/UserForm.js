@@ -6,6 +6,7 @@ export const UserForm = ({userName, handleUserNameChange}) => {
             id="username"
             name="username"
             type="text"
+            value={userName}
             onChange={handleUserNameChange}
         />
         <p>Searching for a new user name: {userName}</p>

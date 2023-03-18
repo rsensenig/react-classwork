@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import { UserItem } from './components/UserItem';
 import { UserForm } from './components/UserForm';
 
 function App() {
-  // Create a new state and its setter function. This state will keep the value of the user input via input field. The value will represent a username.
-  // Initial value of the state is an empty string
-  const [userName, setUserName] = useState('');
-  
   const userList = [
     {
       id: 1,
@@ -24,6 +21,15 @@ function App() {
       following: 148
     }
   ]
+  
+  // Create a new state and its setter function. This state will keep the value of the user input via input field. The value will represent a username.
+  // Initial value of the state is an empty string
+  const [userName, setUserName] = useState('');
+
+  // store an item called "UserName" to the local storage
+  useEffect(() => {
+    localStorage.setItem("Username:", userName)
+  }, [userName])
   
   // handler function
   const handleUserNameChange = (event) => {
