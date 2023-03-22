@@ -3,22 +3,22 @@ import './App.css';
 import { UserItem } from './components/UserItem';
 import { UserForm } from './components/UserForm';
 
-const initialUsers = [
-  {
-    id: 1,
-    name: 'Rachel Sensenig',
-    location: 'Somerville, MA',
-    followers: 768,
-    following: 59
-  },
-  {
-    id: 2,
-    name: 'Kit Fenrir',
-    location: 'Denver, CO',
-    followers: 5478,
-    following: 148
-  }
-]
+// const initialUsers = [
+//   {
+//     id: 1,
+//     name: 'Rachel Sensenig',
+//     location: 'Somerville, MA',
+//     followers: 768,
+//     following: 59
+//   },
+//   {
+//     id: 2,
+//     name: 'Kit Fenrir',
+//     location: 'Denver, CO',
+//     followers: 5478,
+//     following: 148
+//   }
+// ]
 
 function App() {
   // create a new state named 'users', and initialize with an empty array
@@ -40,27 +40,40 @@ function App() {
     // use the setter method for 'isLoading' and set it to 'true'
     setIsLoading(true);
     
-    // in the callback function of the useEffect, call a function called getUsersAsync
-    getUsersAsync()
-    // attach a then chain to the getUsersAsync function call
-    // return a response
+    // start a fetch call
+    fetch("https://jsonplaceholder.typicode.com/users")
+      // take a response and convert it into a json file
+      .then(res => res.json())
+      // take the data and using the setter function of the 'users' state, update the 'users' state
+      // set isLoading to false again
       .then(res => {
-        // use the setter function for 'users' state to set the 'users' to the response data
-        setUsers(res.data);
-        // set isLoading back to false
-        setIsLoading(false);
-      })
+        setUsers(res)
+        setIsLoading(false)
+      }
+      )
+
+    // in the callback function of the useEffect, call a function called getUsersAsync
+    // getUsersAsync()
+    // // attach a then chain to the getUsersAsync function call
+    // // return a response
+    //   .then(res => {
+    //     // use the setter function for 'users' state to set the 'users' to the response data
+    //     setUsers(res.data);
+    //     // set isLoading back to false
+    //     setIsLoading(false);
+    //   })
+
     // leave the dependency array empty
   }, [])
   
   // define getUsersAsync
-  const getUsersAsync = () => {
-    // return a new promise
-    return new Promise(resolve => {
-      // create a setTimeout to resolve the data after 3 seconds
-      setTimeout(() => resolve({data: initialUsers}), 3000)
-    })
-  }
+  // const getUsersAsync = () => {
+  //   // return a new promise
+  //   return new Promise(resolve => {
+  //     // create a setTimeout to resolve the data after 3 seconds
+  //     setTimeout(() => resolve({data: initialUsers}), 3000)
+  //   })
+  // }
 
   // handler function
   const handleUserNameChange = (event) => {
@@ -89,7 +102,7 @@ function App() {
         <p>Loading...</p>
       ) : (
         <UserItem 
-        initialUsers={initialUsers}
+        users={users}
         handleUserInformation={handleUserInformation}
       />
       )}
